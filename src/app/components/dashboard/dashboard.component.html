@@ -4,9 +4,12 @@
 </div> -->
 <home-logo></home-logo>
 <div class="dashboard-blocks-container">
-  <button class="dashboards-blocks" [routerLink]="['/subjects', 'physics']">
-    <img src="../assets/icons/todo.svg" class="dashboard-icons" />
-  </button>
+  <ion-nav-link router-direction="forward" [component]="todoComponent">
+    <button class="dashboards-blocks" [routerLink]="['/todo']">
+      <img src="../assets/icons/todo.svg" class="dashboard-icons" />
+    </button>
+  </ion-nav-link>
+
   <button class="dashboards-blocks" [routerLink]="['/subjects', 'chemistry']">
     <img src="../assets/icons/shopping.svg" class="dashboard-icons" />
   </button>
@@ -16,6 +19,6 @@
     <img src="../assets/icons/reminder.svg" class="dashboard-icons" />
   </button>
   <button class="dashboards-blocks" [routerLink]="['/subjects', 'computers']">
-    <img src="../assets/icons/todo.svg" class="dashboard-icons" />
+    <img src="../assets/icons/password.svg" class="dashboard-icons" />
   </button>
 </div>
