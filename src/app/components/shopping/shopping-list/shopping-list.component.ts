@@ -18,20 +18,16 @@ import {
   IonItemSliding,
   IonItemOption,
   IonItemOptions,
-  IonNav,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'home-shopping',
+  selector: 'home-shopping-list',
   standalone: true,
+  templateUrl: './shopping-list.component.html',
+  styleUrls: ['./shopping-list.component.scss'],
   imports: [
     IonHeader,
     IonTitle,
-    IonNav,
     IonNavLink,
     IonBackButton,
     IonButton,
@@ -48,17 +44,14 @@ import { RouterModule } from '@angular/router';
     IonItemOption,
     IonLabel,
     IonCheckbox,
-    RouterModule,
+    ShoppingListComponent,
   ],
-  templateUrl: './shopping.component.html',
-  styleUrls: ['./shopping.component.scss'],
 })
-export class ShoppingComponent implements OnInit {
-  shoppingListComponent: ShoppingListComponent = new ShoppingListComponent();
+export class ShoppingListComponent implements OnInit {
+  title: string = '';
+  constructor() {}
 
-  constructor() {
-    addIcons({ add });
+  ngOnInit() {
+    this.title = '26 April';
   }
-
-  ngOnInit() {}
 }

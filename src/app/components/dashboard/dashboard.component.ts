@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LogoComponent } from '../logo/logo.component';
 import { IonNav, IonNavLink } from '@ionic/angular/standalone';
 import { TodoComponent } from '../todo/todo.component';
+import { ShoppingComponent } from '../shopping/shopping.component';
 
 @Component({
   selector: 'home-dashboard',
@@ -15,6 +16,7 @@ import { TodoComponent } from '../todo/todo.component';
 export class DashboardComponent {
   teachersProfile: any;
   todoComponent: TodoComponent = new TodoComponent();
+  shoppingComponent: ShoppingComponent = new ShoppingComponent();
 
   constructor() {
     // this.studentsService.getTeachersProfile().subscribe((res: any) => {

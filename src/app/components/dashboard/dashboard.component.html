@@ -9,10 +9,11 @@
       <img src="../assets/icons/todo.svg" class="dashboard-icons" />
     </button>
   </ion-nav-link>
-
-  <button class="dashboards-blocks" [routerLink]="['/subjects', 'chemistry']">
-    <img src="../assets/icons/shopping.svg" class="dashboard-icons" />
-  </button>
+  <ion-nav-link router-direction="forward" [component]="shoppingComponent">
+    <button class="dashboards-blocks" [routerLink]="['/shopping']">
+      <img src="../assets/icons/shopping.svg" class="dashboard-icons" />
+    </button>
+  </ion-nav-link>
 </div>
 <div class="dashboard-blocks-container">
   <button class="dashboards-blocks" [routerLink]="['/subjects', 'maths']">
