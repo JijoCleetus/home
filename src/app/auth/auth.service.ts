@@ -29,7 +29,6 @@ export class AuthService {
       })
       .pipe(
         map((res) => {
-          console.log(res);
           // login successful if there's a jwt token in the response
           if (res && res.user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
