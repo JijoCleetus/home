@@ -17,17 +17,13 @@ ion-checkbox {
   color: #a19e9e;
 }
 .footer-item {
-  position: sticky;
-  bottom: 0;
-  top: 819px;
+  position: absolute;
+  margin-bottom: 5vh;
+  bottom: 20px;
   width: 90%;
-  margin: 0px 10px;
   padding: 0;
   --padding-start: 2px;
   --inner-padding-end: 2px;
-  &.md {
-    top: 790px;
-  }
   .sc-ion-input-ios-s {
     --background: #33394199;
     --padding-start: 10px;

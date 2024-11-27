@@ -28,7 +28,9 @@
         ></ion-checkbox>
       </ion-item>
       <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
+        <ion-item-option color="danger" (click)="deleteItem(list)"
+          >Delete</ion-item-option
+        >
       </ion-item-options>
     </ion-item-sliding>
 

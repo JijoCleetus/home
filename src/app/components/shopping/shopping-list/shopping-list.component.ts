@@ -100,6 +100,8 @@ export class ShoppingListComponent implements OnInit {
   }
 
   addToList() {
+    if (!this.newItem) return;
+
     const payload: ShoppingListData = {
       shoppingId: parseInt(this.shoppingId),
       title: this.newItem,
@@ -112,6 +114,16 @@ export class ShoppingListComponent implements OnInit {
         if (res.success) {
           this.getAllShoppingList(this.shoppingId);
           this.newItem = null!;
+        }
+      });
+  }
+
+  deleteItem(item: ShoppingListData) {
+    this.shoppingService
+      .removeItemFromShoppingList(item.id as number)
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.getAllShoppingList(this.shoppingId);
         }
       });
   }

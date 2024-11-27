@@ -27,4 +27,8 @@ export class ShoppingService {
   addItemToShoppingList(data: ShoppingListData) {
     return this.http.post(`${environment.baseUrl}/api/shopping/list`, data);
   }
+
+  removeItemFromShoppingList(id: number) {
+    return this.http.delete(`${environment.baseUrl}/api/shopping/list/${id}`);
+  }
 }
