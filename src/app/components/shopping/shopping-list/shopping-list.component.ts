@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule, NgClass } from '@angular/common';
 import {
   IonHeader,
   IonTitle,
@@ -18,7 +19,16 @@ import {
   IonItemSliding,
   IonItemOption,
   IonItemOptions,
+  IonInput,
+  CheckboxCustomEvent,
+  IonFooter,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { paperPlane } from 'ionicons/icons';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ShoppingService } from '../shopping.service';
+import { ShoppingListData } from '../../../../models/shopping.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'home-shopping-list',
@@ -44,14 +54,65 @@ import {
     IonItemOption,
     IonLabel,
     IonCheckbox,
+    IonInput,
+    IonFooter,
     ShoppingListComponent,
+    NgClass,
+    CommonModule,
+    FormsModule,
+    RouterModule,
   ],
 })
 export class ShoppingListComponent implements OnInit {
   title: string = '';
-  constructor() {}
+  isStriked: boolean = false;
+  shoppingId: string = null!;
+  shoppingList: ShoppingListData[] = null!;
+  newItem: string = null!;
+
+  private activatedRouter = inject(ActivatedRoute);
+  private shoppingService = inject(ShoppingService);
+
+  constructor() {
+    addIcons({ paperPlane });
+  }
 
   ngOnInit() {
-    this.title = '26 April';
+    this.shoppingId = this.activatedRouter.snapshot.paramMap.get('id')!;
+    this.getAllShoppingList(this.shoppingId);
+    this.activatedRouter.queryParams.subscribe((param) => {
+      this.title = param['title'];
+    });
+  }
+
+  markComplete(event: CheckboxCustomEvent, list: ShoppingListData): void {
+    this.isStriked = event.detail.checked;
+    list.active = event.detail.checked ? 0 : 1;
+    this.shoppingService.markAsPurchased(list.id!, list).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  getAllShoppingList(id: string): void {
+    this.shoppingService.getAllShoppingList(id).subscribe((res: any) => {
+      this.shoppingList = res.list;
+    });
+  }
+
+  addToList() {
+    const payload: ShoppingListData = {
+      shoppingId: parseInt(this.shoppingId),
+      title: this.newItem,
+      active: 1,
+      category: 0,
+    };
+    this.shoppingService
+      .addItemToShoppingList(payload)
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.getAllShoppingList(this.shoppingId);
+          this.newItem = null!;
+        }
+      });
   }
 }

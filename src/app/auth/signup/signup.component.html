@@ -1,0 +1,47 @@
+<home-logo></home-logo>
+<div class="signup-blocks-container">
+  <form (submit)="signUp(signUpData)">
+    <div class="form-group">
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Name"
+        [(ngModel)]="signUpData.name"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        [(ngModel)]="signUpData.email"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        [(ngModel)]="signUpData.password"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="c_password"
+        class="form-control"
+        placeholder="Confirm Password"
+        [(ngModel)]="signUpData.confirmPassword"
+      />
+    </div>
+    <div class="text-center">
+      <input type="submit" class="btn btn-my" value="Sign Up" />
+    </div>
+    <div class="text-center login">
+      Already have an account ? <a routerLink="/login">Login</a> hera.
+    </div>
+  </form>
+</div>

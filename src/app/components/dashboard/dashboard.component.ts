@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LogoComponent } from '../logo/logo.component';
-import { IonNav, IonNavLink } from '@ionic/angular/standalone';
+import { AlertController, IonNav, IonNavLink } from '@ionic/angular/standalone';
 import { TodoComponent } from '../todo/todo.component';
 import { ShoppingComponent } from '../shopping/shopping.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'home-dashboard',
@@ -18,9 +19,14 @@ export class DashboardComponent {
   todoComponent: TodoComponent = new TodoComponent();
   shoppingComponent: ShoppingComponent = new ShoppingComponent();
 
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   constructor() {
-    // this.studentsService.getTeachersProfile().subscribe((res: any) => {
-    //   this.teachersProfile = res;
-    // });
+    this.authService.currentUser.subscribe((user) => {
+      if (!user) {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

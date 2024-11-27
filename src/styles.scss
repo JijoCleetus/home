@@ -6,3 +6,66 @@ body {
   height: 100%;
   background-image: url("./assets/images/bg.png") !important;
 }
+
+ion-title {
+  &.md {
+    width: 100%;
+    margin-left: 10px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    height: 0;
+    text-align: center;
+  }
+}
+
+ion-fab-button {
+  &.md {
+    margin-bottom: 12px;
+  }
+}
+
+ion-back-button {
+  z-index: 99;
+  position: relative;
+}
+
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  height: 40px;
+  width: 275px;
+  border-radius: 6px;
+  background-color: transparent;
+  border: 3px solid #fff;
+  color: #fff;
+  padding: 0px 0px 0px 5px;
+}
+.form-control::placeholder {
+  color: #fff;
+}
+.btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 3px solid #fff;
+}

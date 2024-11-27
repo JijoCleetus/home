@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonTitle,
@@ -21,9 +21,14 @@ import {
   IonNav,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
+import { add, paperPlane } from 'ionicons/icons';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RouterModule } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { ShoppingModalComponent } from './shopping.modal.component';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ShoppingService } from './shopping.service';
 
 @Component({
   selector: 'home-shopping',
@@ -49,16 +54,30 @@ import { RouterModule } from '@angular/router';
     IonLabel,
     IonCheckbox,
     RouterModule,
+    CommonModule,
+    HttpClientModule,
+    ShoppingModalComponent,
   ],
+  providers: [ShoppingService],
   templateUrl: './shopping.component.html',
   styleUrls: ['./shopping.component.scss'],
 })
 export class ShoppingComponent implements OnInit {
   shoppingListComponent: ShoppingListComponent = new ShoppingListComponent();
-
+  // shoppingModalComponent: ShoppingModalComponent = new ShoppingModalComponent();
+  private shoppingService = inject(ShoppingService);
+  shopping: any;
   constructor() {
     addIcons({ add });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllShoppings();
+  }
+
+  getAllShoppings(): void {
+    this.shoppingService.getAllShoppings().subscribe((res: any) => {
+      this.shopping = res.shopping;
+    });
+  }
 }

@@ -1,0 +1,19 @@
+.login-blocks-container {
+  display: flex;
+  max-width: 400px;
+  flex-direction: row;
+  padding: 12px;
+  gap: 24px;
+  justify-content: center;
+  margin: 100px auto;
+}
+.text-center {
+  text-align: center;
+}
+.forget-pass {
+  margin-top: 20px;
+  a {
+    color: #3cedd6;
+    filter: drop-shadow(0 0 0.7rem #000);
+  }
+}

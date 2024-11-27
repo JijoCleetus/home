@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
   selector: 'home-root',
   standalone: true,
   imports: [RouterOutlet, IonicModule],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

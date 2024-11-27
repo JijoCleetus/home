@@ -1,0 +1,32 @@
+<home-logo></home-logo>
+<div class="login-blocks-container">
+  <form (submit)="login(userData)">
+    <div class="form-group">
+      <input
+        type="text"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        [(ngModel)]="userData.email"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        [(ngModel)]="userData.password"
+      />
+    </div>
+    <div class="text-center">
+      <input type="submit" class="btn btn-my" value="Login" />
+      <div class="forget-pass">
+        <a routerLink="/forget-password">Forget Password ?</a>
+      </div>
+      <div class="forget-pass">
+        Don`t have an account ? <a routerLink="/sign-up">Sign Up</a> here.
+      </div>
+    </div>
+  </form>
+</div>

@@ -3,7 +3,26 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
+import { ShoppingService } from './components/shopping/shopping.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor.service';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideIonicAngular({})]
+  providers: [
+    provideRouter(routes),
+    provideIonicAngular({}),
+    ShoppingService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 };
