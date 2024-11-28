@@ -13,6 +13,10 @@ export class ShoppingService {
     return this.http.get(`${environment.baseUrl}/api/shopping`);
   }
 
+  getAllVendors() {
+    return this.http.get(`${environment.baseUrl}/api/shopping/vendors`);
+  }
+
   getAllShoppingList(id: string) {
     return this.http.get(`${environment.baseUrl}/api/shopping/list/${id}`);
   }
@@ -22,6 +26,10 @@ export class ShoppingService {
       `${environment.baseUrl}/api/shopping/list/${id}`,
       list
     );
+  }
+
+  addShoping(data: any) {
+    return this.http.post(`${environment.baseUrl}/api/shopping`, data);
   }
 
   addItemToShoppingList(data: ShoppingListData) {

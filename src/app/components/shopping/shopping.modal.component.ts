@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
 import {
@@ -17,6 +24,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'home-shopping-modal',
@@ -36,6 +45,8 @@ import {
     IonInput,
     IonSelect,
     IonSelectOption,
+    CommonModule,
+    FormsModule,
   ],
   template: `
     <ion-modal #modal trigger="open-modal">
@@ -56,21 +67,27 @@ import {
               label-placement="floating"
               fill="outline"
               placeholder="List Name"
+              [(ngModel)]="title"
             ></ion-input>
           </ion-item>
           <ion-item>
             <ion-select
-              label="Select Category"
+              label="Select Vendor"
               label-placement="floating"
               fill="outline"
+              [(ngModel)]="vendorName"
             >
-              <ion-select-option value="apple">Apple</ion-select-option>
-              <ion-select-option value="banana">Banana</ion-select-option>
-              <ion-select-option value="orange">Orange</ion-select-option>
+              @for (vendor of vendors; track vendor.id){
+              <ion-select-option [value]="vendor.name">{{
+                vendor.name
+              }}</ion-select-option>
+              }
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-button size="default" class="add-button">Add</ion-button>
+            <ion-button size="default" class="add-button" (click)="save(modal)"
+              >Add</ion-button
+            >
           </ion-item>
         </ion-content>
       </ng-template>
@@ -99,9 +116,23 @@ import {
   `,
 })
 export class ShoppingModalComponent implements OnInit {
+  @Input() vendors: any;
+  @Output() onSave = new EventEmitter<any>();
+  title: string = '';
+  vendorName: string = '';
+
   constructor() {
     addIcons({ add });
   }
 
   ngOnInit() {}
+
+  save(modal: any) {
+    const shoppingItem = {
+      name: this.title,
+      vendor: this.vendorName,
+    };
+    this.onSave.emit(shoppingItem);
+    modal.dismiss();
+  }
 }

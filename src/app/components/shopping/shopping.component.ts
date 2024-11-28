@@ -67,17 +67,32 @@ export class ShoppingComponent implements OnInit {
   // shoppingModalComponent: ShoppingModalComponent = new ShoppingModalComponent();
   private shoppingService = inject(ShoppingService);
   shopping: any;
+  vendors: any;
   constructor() {
     addIcons({ add });
   }
 
   ngOnInit() {
+    this.getAllvendors();
     this.getAllShoppings();
   }
 
   getAllShoppings(): void {
     this.shoppingService.getAllShoppings().subscribe((res: any) => {
       this.shopping = res.shopping;
+    });
+  }
+  getAllvendors(): void {
+    this.shoppingService.getAllVendors().subscribe((res: any) => {
+      this.vendors = res.vendors;
+      console.log(this.vendors);
+    });
+  }
+  addShopping(data: Event) {
+    this.shoppingService.addShoping(data).subscribe((res: any) => {
+      if (res.success) {
+        this.getAllShoppings();
+      }
     });
   }
 }

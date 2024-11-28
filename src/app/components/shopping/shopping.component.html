@@ -13,7 +13,10 @@
     </ion-fab-button>
   </ion-fab>
 
-  <home-shopping-modal></home-shopping-modal>
+  <home-shopping-modal
+    [vendors]="vendors"
+    (onSave)="addShopping($event)"
+  ></home-shopping-modal>
 
   <ion-list [inset]="true">
     @for (item of shopping; track item.id) {
