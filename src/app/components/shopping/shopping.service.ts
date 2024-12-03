@@ -32,6 +32,13 @@ export class ShoppingService {
     return this.http.post(`${environment.baseUrl}/api/shopping`, data);
   }
 
+  removeItemFromShopping(id: number, force = false) {
+    const url = force
+      ? `${environment.baseUrl}/api/shopping/force/${id}`
+      : `${environment.baseUrl}/api/shopping/${id}`;
+    return this.http.delete(url);
+  }
+
   addItemToShoppingList(data: ShoppingListData) {
     return this.http.post(`${environment.baseUrl}/api/shopping/list`, data);
   }

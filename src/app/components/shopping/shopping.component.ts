@@ -19,6 +19,7 @@ import {
   IonItemOption,
   IonItemOptions,
   IonNav,
+  IonAlert,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, paperPlane } from 'ionicons/icons';
@@ -58,7 +59,7 @@ import { ShoppingService } from './shopping.service';
     HttpClientModule,
     ShoppingModalComponent,
   ],
-  providers: [ShoppingService],
+  providers: [ShoppingService, AlertController],
   templateUrl: './shopping.component.html',
   styleUrls: ['./shopping.component.scss'],
 })
@@ -66,6 +67,7 @@ export class ShoppingComponent implements OnInit {
   shoppingListComponent: ShoppingListComponent = new ShoppingListComponent();
   // shoppingModalComponent: ShoppingModalComponent = new ShoppingModalComponent();
   private shoppingService = inject(ShoppingService);
+  private alertController = inject(AlertController);
   shopping: any;
   vendors: any;
   constructor() {
@@ -82,17 +84,55 @@ export class ShoppingComponent implements OnInit {
       this.shopping = res.shopping;
     });
   }
+
   getAllvendors(): void {
     this.shoppingService.getAllVendors().subscribe((res: any) => {
       this.vendors = res.vendors;
-      console.log(this.vendors);
     });
   }
+
   addShopping(data: Event) {
     this.shoppingService.addShoping(data).subscribe((res: any) => {
       if (res.success) {
         this.getAllShoppings();
       }
     });
+  }
+
+  deleteItem(shopping: any) {
+    this.shoppingService
+      .removeItemFromShopping(shopping.id as number)
+      .subscribe(async (res: any) => {
+        if (res.success) {
+          this.getAllShoppings();
+        } else if (res.status === 201) {
+          this.showWarning(res?.message, shopping.id);
+        }
+      });
+  }
+
+  async showWarning(message: string, id: number) {
+    const alert = await this.alertController.create({
+      header: 'Warning',
+      message: message
+        ? message
+        : 'Active shopping list, Do you want to delete?',
+      buttons: [
+        { text: 'Cancel', role: 'cancel', cssClass: 'secondary' },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.shoppingService
+              .removeItemFromShopping(id as number, true)
+              .subscribe(async (res: any) => {
+                if (res.success) {
+                  this.getAllShoppings();
+                }
+              });
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }
