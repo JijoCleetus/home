@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -12,6 +12,7 @@ import {
 } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { ErrorInterceptor } from './interceptors/error.interceptor.service';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,15 +21,19 @@ export const appConfig: ApplicationConfig = {
     ShoppingService,
     AuthService,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true,
     },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: ErrorInterceptor,
+        multi: true,
     },
     provideHttpClient(withInterceptorsFromDi()),
-  ],
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
+],
 };
