@@ -19,12 +19,11 @@ import {
   IonItemOption,
   IonItemOptions,
   IonNav,
-  IonAlert,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, paperPlane } from 'ionicons/icons';
+import { add } from 'ionicons/icons';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RouterModule } from '@angular/router';
 import { AlertController } from '@ionic/angular';

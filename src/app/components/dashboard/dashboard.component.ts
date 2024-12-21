@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { LogoComponent } from '../logo/logo.component';
-import { AlertController, IonNav, IonNavLink } from '@ionic/angular/standalone';
+import { IonNav, IonNavLink } from '@ionic/angular/standalone';
 import { TodoComponent } from '../todo/todo.component';
 import { ShoppingComponent } from '../shopping/shopping.component';
 import { AuthService } from '../../auth/auth.service';

@@ -3,7 +3,6 @@ import { Router, RouterModule } from '@angular/router';
 import { LogoComponent } from '../../components/logo/logo.component';
 import { UserData } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
