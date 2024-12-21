@@ -94,6 +94,7 @@ export class ShoppingListComponent implements OnInit {
     list.active = event.detail.checked ? 0 : 1;
     this.shoppingService.markAsPurchased(list.id!, list).subscribe((res) => {
       console.log(res);
+      this.sortList();
     });
   }
 
@@ -101,6 +102,17 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingService.getAllShoppingList(id).subscribe((res: any) => {
       this.shoppingList = res.list;
     });
+  }
+
+  /**
+   * Move the un completed items to top of the list
+   */
+  sortList() {
+    const unmarkedList =
+      this.shoppingList.filter((item) => item.active === 1) || [];
+    const markedList =
+      this.shoppingList.filter((item) => item.active === 0) || [];
+    this.shoppingList = [...unmarkedList, ...markedList];
   }
 
   addToList() {
