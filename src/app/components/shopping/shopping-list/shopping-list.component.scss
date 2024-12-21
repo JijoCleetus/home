@@ -29,3 +29,7 @@ ion-checkbox {
     --padding-start: 10px;
   }
 }
+.wrapper {
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}

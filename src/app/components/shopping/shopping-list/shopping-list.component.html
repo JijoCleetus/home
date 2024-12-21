@@ -12,36 +12,43 @@
       <ion-icon name="paper-plane"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <div class="wrapper">
+    <ion-list [inset]="true">
+      @for (list of shoppingList; track list.id){
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label [ngClass]="list.active === 0 ? 'strike-text' : ''">{{
+            list.title
+          }}</ion-label>
+          <ion-checkbox
+            slot="end"
+            aria-label="Toggle task completion"
+            [checked]="list.active === 0 ? true : false"
+            (ionChange)="markComplete($event, list)"
+          ></ion-checkbox>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger" (click)="deleteItem(list)"
+            >Delete</ion-item-option
+          >
+        </ion-item-options>
+      </ion-item-sliding>
 
-  <ion-list [inset]="true">
-    @for (list of shoppingList; track list.id){
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label [ngClass]="list.active === 0 ? 'strike-text' : ''">{{
-          list.title
-        }}</ion-label>
-        <ion-checkbox
-          slot="end"
-          aria-label="Toggle task completion"
-          [checked]="list.active === 0 ? true : false"
-          (ionChange)="markComplete($event, list)"
-        ></ion-checkbox>
-      </ion-item>
-      <ion-item-options>
-        <ion-item-option color="danger" (click)="deleteItem(list)"
-          >Delete</ion-item-option
-        >
-      </ion-item-options>
-    </ion-item-sliding>
-
-    }
-  </ion-list>
-  <ion-item class="footer-item">
-    <ion-input
-      label-placement="floating"
-      fill="outline"
-      placeholder="Add an item"
-      [(ngModel)]="newItem"
-    ></ion-input>
-  </ion-item>
+      }
+    </ion-list>
+    <ion-infinite-scroll>
+      <ion-infinite-scroll-content
+        loadingText="Please wait..."
+        loadingSpinner="bubbles"
+      ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-item class="footer-item">
+      <ion-input
+        label-placement="floating"
+        fill="outline"
+        placeholder="Add an item"
+        [(ngModel)]="newItem"
+      ></ion-input>
+    </ion-item>
+  </div>
 </ion-content>

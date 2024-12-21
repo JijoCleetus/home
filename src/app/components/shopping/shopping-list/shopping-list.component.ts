@@ -22,6 +22,8 @@ import {
   IonInput,
   CheckboxCustomEvent,
   IonFooter,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { paperPlane } from 'ionicons/icons';
@@ -56,6 +58,8 @@ import { FormsModule } from '@angular/forms';
     IonCheckbox,
     IonInput,
     IonFooter,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     ShoppingListComponent,
     NgClass,
     CommonModule,

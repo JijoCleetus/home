@@ -20,6 +20,8 @@ import {
   IonItemOptions,
   IonNav,
   IonAlert,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, paperPlane } from 'ionicons/icons';
@@ -54,6 +56,8 @@ import { ShoppingService } from './shopping.service';
     IonItemOption,
     IonLabel,
     IonCheckbox,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     RouterModule,
     CommonModule,
     HttpClientModule,
