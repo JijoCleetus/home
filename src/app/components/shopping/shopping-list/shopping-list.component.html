@@ -13,6 +13,7 @@
     </ion-fab-button>
   </ion-fab>
   <div class="wrapper">
+    @if (shoppingList) {
     <ion-list [inset]="true">
       @for (list of shoppingList; track list.id){
       <ion-item-sliding>
@@ -36,6 +37,11 @@
 
       }
     </ion-list>
+    } @else {
+    <div color="tertiary" class="no-item">
+      <h5>No item available</h5>
+    </div>
+    }
     <ion-infinite-scroll>
       <ion-infinite-scroll-content
         loadingText="Please wait..."

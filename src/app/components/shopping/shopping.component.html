@@ -18,6 +18,7 @@
     (onSave)="addShopping($event)"
   ></home-shopping-modal>
 
+  @if (shopping?.length >0) {
   <ion-list [inset]="true">
     @for (item of shopping; track item.id) {
     <ion-item-sliding>
@@ -40,6 +41,11 @@
     </ion-item-sliding>
     }
   </ion-list>
+  } @else {
+  <div color="tertiary" class="no-item">
+    <h5>No Shoppings to list</h5>
+  </div>
+  }
   <ion-infinite-scroll>
     <ion-infinite-scroll-content
       loadingText="Please wait..."

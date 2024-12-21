@@ -75,6 +75,14 @@ ion-modal ion-toolbar {
   margin-top: 20px;
 }
 
+.no-item {
+  width: 215px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
 @media screen and (max-width: 425px) {
   .non-mobile-alert {
     display: none;

@@ -21,6 +21,7 @@ import {
   IonNav,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonText,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
@@ -55,6 +56,7 @@ import { ShoppingService } from './shopping.service';
     IonItemOption,
     IonLabel,
     IonCheckbox,
+    IonText,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     RouterModule,

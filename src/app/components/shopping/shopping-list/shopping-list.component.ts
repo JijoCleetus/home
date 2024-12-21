@@ -101,6 +101,7 @@ export class ShoppingListComponent implements OnInit {
   getAllShoppingList(id: string): void {
     this.shoppingService.getAllShoppingList(id).subscribe((res: any) => {
       this.shoppingList = res.list;
+      this.sortList();
     });
   }
 
