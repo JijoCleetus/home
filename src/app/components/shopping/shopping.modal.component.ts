@@ -55,15 +55,6 @@ import { FormsModule } from '@angular/forms';
           </ion-toolbar>
 
           <ion-item>
-            <ion-input
-              label="Name"
-              label-placement="floating"
-              fill="outline"
-              placeholder="List Name"
-              [(ngModel)]="title"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
             <ion-select
               label="Select Vendor"
               label-placement="floating"
@@ -77,6 +68,16 @@ import { FormsModule } from '@angular/forms';
               }
             </ion-select>
           </ion-item>
+          <ion-item>
+            <ion-input
+              label="Name"
+              label-placement="floating"
+              fill="outline"
+              placeholder="List Name"
+              [(ngModel)]="title"
+            ></ion-input>
+          </ion-item>
+
           <ion-item>
             <ion-button size="default" class="add-button" (click)="save(modal)"
               >Add</ion-button
