@@ -18,6 +18,7 @@ import {
 import { addIcons } from 'ionicons';
 import { informationCircle, logOutOutline } from 'ionicons/icons';
 import { AuthService } from '../../auth/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'home-settings',
@@ -43,6 +44,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class SettingsComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
+  private alertController: AlertController = inject(AlertController);
 
   constructor() {
     addIcons({ informationCircle, logOutOutline });
@@ -52,5 +54,19 @@ export class SettingsComponent implements OnInit {
 
   performLogout(): void {
     this.authService.logout();
+  }
+
+  async showInfo() {
+    const alert = await this.alertController.create({
+      header: 'About',
+      message:
+        'Home is a utility app to track and manage lists.' +
+        '<br/><br/>' +
+        'Developed By: <b>Jijo Cleetus.</b>' +
+        '<br/>' +
+        ' Version: <b>0.0.1</b>',
+      buttons: [{ text: 'Ok', role: 'cancel', cssClass: 'secondary' }],
+    });
+    await alert.present();
   }
 }
