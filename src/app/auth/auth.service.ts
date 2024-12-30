@@ -3,10 +3,12 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { UserData } from '../../models/user.model';
 import { environment } from '../../environments/environment.development';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   http = inject(HttpClient);
+  private router: Router = inject(Router);
   private currentUserSubject: BehaviorSubject<UserData | null>;
   public currentUser: Observable<UserData | null>;
 
@@ -44,5 +46,7 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null!);
+    this.currentUser = new BehaviorSubject(null);
+    this.router.navigate(['/login']);
   }
 }

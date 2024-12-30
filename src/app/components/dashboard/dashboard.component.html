@@ -1,7 +1,3 @@
-<!-- <app-user [profile]="teachersProfile?.teachersDetail"></app-user> -->
-<!-- <div class="all-students" [routerLink]="['/allStudents']">
-    All Students
-</div> -->
 <home-logo></home-logo>
 <div class="dashboard-blocks-container">
   <ion-nav-link router-direction="forward" [component]="todoComponent">
@@ -24,10 +20,19 @@
   </button>
 </div>
 <div class="dashboard-blocks-container">
-  <button class="dashboards-blocks" [routerLink]="['/profile']">
-    <img src="../assets/icons/profile.svg" class="dashboard-icons" />
-  </button>
-  <button class="dashboards-blocks" [routerLink]="['/settings']">
-    <img src="../assets/icons/settings.svg" class="dashboard-icons" />
-  </button>
+  <ion-nav-link router-direction="forward" [component]="shoppingComponent">
+    <button class="dashboards-blocks" [routerLink]="['/todo']">
+      <img src="../assets/icons/profile.svg" class="dashboard-icons" />
+    </button>
+  </ion-nav-link>
+  <ion-nav-link router-direction="forward" [component]="settingsComponent">
+    <button class="dashboards-blocks" [routerLink]="['/settings']">
+      <img src="../assets/icons/settings.svg" class="dashboard-icons" />
+    </button>
+  </ion-nav-link>
+  <!-- <ion-nav-link router-direction="forward" [component]="settingsComponent">
+    <button class="dashboards-blocks" [routerLink]="['/shopping']">
+      <img src="../assets/icons/settings.svg" class="dashboard-icons" />
+    </button>
+  </ion-nav-link> -->
 </div>

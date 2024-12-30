@@ -6,6 +6,7 @@ import { IonNav, IonNavLink } from '@ionic/angular/standalone';
 import { TodoComponent } from '../todo/todo.component';
 import { ShoppingComponent } from '../shopping/shopping.component';
 import { AuthService } from '../../auth/auth.service';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'home-dashboard',
@@ -18,6 +19,7 @@ export class DashboardComponent {
   teachersProfile: any;
   todoComponent: TodoComponent = new TodoComponent();
   shoppingComponent: ShoppingComponent = new ShoppingComponent();
+  settingsComponent: SettingsComponent = new SettingsComponent();
 
   private authService = inject(AuthService);
   private router = inject(Router);

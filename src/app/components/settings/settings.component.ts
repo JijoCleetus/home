@@ -41,7 +41,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
-  providers: [Router, AuthService],
+  providers: [AuthService],
 })
 export class SettingsComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
@@ -55,6 +55,5 @@ export class SettingsComponent implements OnInit {
 
   performLogout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }
