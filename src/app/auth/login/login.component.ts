@@ -21,11 +21,9 @@ export class LoginComponent implements OnInit {
     password: '',
   };
   constructor() {
-    this.authService.currentUser.subscribe((user) => {
-      if (user) {
-        this.router.navigate(['/dashboard']);
-      }
-    });
+    if (this.authService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {}

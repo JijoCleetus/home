@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
 export class AuthService {
   http = inject(HttpClient);
   private router: Router = inject(Router);
-  private currentUserSubject: BehaviorSubject<UserData | null>;
-  public currentUser: Observable<UserData | null>;
+  private currentUserSubject: BehaviorSubject<UserData | undefined>;
+  public currentUser: Observable<UserData | undefined>;
 
   constructor() {
-    this.currentUserSubject = new BehaviorSubject<UserData | null>(
-      JSON.parse(localStorage.getItem('currentUser')!)
+    this.currentUserSubject = new BehaviorSubject<UserData | undefined>(
+      JSON.parse(localStorage.getItem('currentUser') as string)
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): UserData | null {
+  public get currentUserValue(): UserData | undefined {
     return this.currentUserSubject.value;
   }
 
@@ -45,8 +45,7 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null!);
-    this.currentUser = new BehaviorSubject(null);
+    this.currentUserSubject.next(undefined);
     this.router.navigate(['/login']);
   }
 }

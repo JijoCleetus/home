@@ -18,7 +18,6 @@ import {
 import { addIcons } from 'ionicons';
 import { informationCircle, logOutOutline } from 'ionicons/icons';
 import { AuthService } from '../../auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'home-settings',
@@ -41,11 +40,9 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
-  providers: [AuthService],
 })
 export class SettingsComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
-  private router: Router = inject(Router);
 
   constructor() {
     addIcons({ informationCircle, logOutOutline });
