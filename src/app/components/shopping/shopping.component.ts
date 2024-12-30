@@ -71,8 +71,8 @@ import { ShoppingService } from './shopping.service';
 export class ShoppingComponent implements OnInit {
   shoppingListComponent: ShoppingListComponent = new ShoppingListComponent();
   // shoppingModalComponent: ShoppingModalComponent = new ShoppingModalComponent();
-  private shoppingService = inject(ShoppingService);
-  private alertController = inject(AlertController);
+  private shoppingService: ShoppingService = inject(ShoppingService);
+  private alertController: AlertController = inject(AlertController);
   shopping: any;
   vendors: any;
   constructor() {

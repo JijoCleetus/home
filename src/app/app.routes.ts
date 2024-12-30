@@ -5,6 +5,7 @@ import { ShoppingComponent } from './components/shopping/shopping.component';
 import { ShoppingListComponent } from './components/shopping/shopping-list/shopping-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'todo',
     component: TodoComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
   {
     path: 'shopping',
