@@ -13,12 +13,14 @@ import {
 import { AuthService } from './auth/auth.service';
 import { ErrorInterceptor } from './interceptors/error.interceptor.service';
 import { provideServiceWorker } from '@angular/service-worker';
+import { TodoService } from './components/todo/todo.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideIonicAngular({ innerHTMLTemplatesEnabled: true }),
     ShoppingService,
+    TodoService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

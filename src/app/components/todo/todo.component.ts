@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonTitle,
@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'home-todo',
@@ -41,9 +42,20 @@ import { add } from 'ionicons/icons';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
+  private todoService: TodoService = inject(TodoService);
+  todoList: any;
   constructor() {
     addIcons({ add });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllTodoLists();
+  }
+
+  getAllTodoLists(): void {
+    this.todoService.getAllTodoList().subscribe((res: any) => {
+      this.todoList = res.shopping;
+      console.log(this.todoList);
+    });
+  }
 }
