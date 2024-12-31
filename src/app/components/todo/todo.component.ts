@@ -17,7 +17,7 @@ import {
   CheckboxCustomEvent,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
+import { imageOutline } from 'ionicons/icons';
 import { TodoService } from './todo.service';
 import { CommonModule } from '@angular/common';
 
@@ -48,7 +48,7 @@ export class TodoComponent implements OnInit {
   private todoService: TodoService = inject(TodoService);
   todoList: any;
   constructor() {
-    addIcons({ add });
+    addIcons({ imageOutline });
   }
 
   ngOnInit() {
@@ -63,10 +63,12 @@ export class TodoComponent implements OnInit {
 
   markComplete(event: CheckboxCustomEvent, list: any): void {
     list.active = event.detail.checked ? 1 : 0;
-    // this.isStriked = event.detail.checked;
-    // list.is_active = event.detail.checked ? 0 : 1;
     this.todoService.markAsCompleted(list.id!, list).subscribe((res) => {
       console.log(res);
     });
+  }
+
+  getTodoImage() {
+    console.log('clicked image');
   }
 }

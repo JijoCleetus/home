@@ -25,6 +25,12 @@
       <ion-label [ngClass]="list.active === 1 ? 'strike-text' : ''">{{
         list.name
       }}</ion-label>
+      <ion-icon
+        (click)="getTodoImage()"
+        aria-hidden="true"
+        name="image-outline"
+        slot="end"
+      ></ion-icon>
     </ion-item>
     }
   </ion-list>
