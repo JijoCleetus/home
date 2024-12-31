@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { ShoppingListData } from '../../../models/shopping.model';
 import { TodoList } from '../../../models/todo.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,8 @@ import { TodoList } from '../../../models/todo.model';
 export class TodoService {
   constructor(private http: HttpClient) {}
 
-  getAllTodoList() {
-    return this.http.get(`${environment.baseUrl}/api/todo`);
+  getAllTodoList(): Observable<TodoList[]> {
+    return this.http.get<TodoList[]>(`${environment.baseUrl}/api/todo`);
   }
 
   markAsCompleted(id: number, list: TodoList) {

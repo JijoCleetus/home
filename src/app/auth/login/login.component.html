@@ -8,6 +8,7 @@
         class="form-control"
         placeholder="Email"
         [(ngModel)]="userData.email"
+        required
       />
     </div>
     <div class="form-group">
@@ -17,6 +18,7 @@
         class="form-control"
         placeholder="Password"
         [(ngModel)]="userData.password"
+        required
       />
     </div>
     <div class="text-center">
@@ -36,4 +38,11 @@
       </h1>
     </div>
   </form>
+  <ion-content>
+    <ion-toast
+      trigger="open-toast"
+      message="This toast will disappear after 5 seconds"
+      [duration]="5000"
+    ></ion-toast>
+  </ion-content>
 </div>
