@@ -82,6 +82,10 @@ ion-modal ion-toolbar {
   left: 0;
   right: 0;
 }
+.strike-text {
+  text-decoration: line-through;
+  color: #a19e9e;
+}
 
 @media screen and (max-width: 425px) {
   .non-mobile-alert {

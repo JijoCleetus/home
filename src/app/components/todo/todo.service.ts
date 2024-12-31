@@ -12,4 +12,8 @@ export class TodoService {
   getAllTodoList() {
     return this.http.get(`${environment.baseUrl}/api/todo`);
   }
+
+  markAsCompleted(id: number, list: any) {
+    return this.http.put(`${environment.baseUrl}/api/todo/${id}`, list);
+  }
 }

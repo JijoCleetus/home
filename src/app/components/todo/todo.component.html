@@ -19,8 +19,12 @@
       <ion-checkbox
         slot="start"
         aria-label="Toggle task completion"
+        [checked]="list.active === 0 ? false : true"
+        (ionChange)="markComplete($event, list)"
       ></ion-checkbox>
-      <ion-label>{{ list.name }}</ion-label>
+      <ion-label [ngClass]="list.active === 1 ? 'strike-text' : ''">{{
+        list.name
+      }}</ion-label>
     </ion-item>
     }
   </ion-list>
