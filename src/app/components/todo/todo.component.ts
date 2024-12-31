@@ -15,6 +15,9 @@ import {
   IonLabel,
   IonCheckbox,
   CheckboxCustomEvent,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { imageOutline } from 'ionicons/icons';
@@ -32,6 +35,9 @@ import { CommonModule } from '@angular/common';
     IonButtons,
     IonToolbar,
     IonFab,
+    IonItemSliding,
+    IonItemOptions,
+    IonItemOption,
     IonContent,
     IonFabButton,
     IonIcon,
@@ -70,5 +76,18 @@ export class TodoComponent implements OnInit {
 
   getTodoImage() {
     console.log('clicked image');
+  }
+
+  deleteItem(item: any) {
+    this.todoService
+      .removeItemFromTodoList(item.id as number)
+      .subscribe(async (res: any) => {
+        if (res.success) {
+          this.getAllTodoLists();
+        }
+        //  else if (res.status === 201) {
+        //   this.showWarning(res?.message, shopping.id);
+        // }
+      });
   }
 }

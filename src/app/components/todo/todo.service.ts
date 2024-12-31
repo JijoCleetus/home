@@ -16,4 +16,8 @@ export class TodoService {
   markAsCompleted(id: number, list: any) {
     return this.http.put(`${environment.baseUrl}/api/todo/${id}`, list);
   }
+
+  removeItemFromTodoList(id: number, force = false) {
+    return this.http.delete(`${environment.baseUrl}/api/todo/${id}`);
+  }
 }

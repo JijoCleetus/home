@@ -15,23 +15,30 @@
 
   <ion-list [inset]="true">
     @for (list of todoList; track list.id){
-    <ion-item>
-      <ion-checkbox
-        slot="start"
-        aria-label="Toggle task completion"
-        [checked]="list.active === 0 ? false : true"
-        (ionChange)="markComplete($event, list)"
-      ></ion-checkbox>
-      <ion-label [ngClass]="list.active === 1 ? 'strike-text' : ''">{{
-        list.name
-      }}</ion-label>
-      <ion-icon
-        (click)="getTodoImage()"
-        aria-hidden="true"
-        name="image-outline"
-        slot="end"
-      ></ion-icon>
-    </ion-item>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          aria-label="Toggle task completion"
+          [checked]="list.active === 0 ? false : true"
+          (ionChange)="markComplete($event, list)"
+        ></ion-checkbox>
+        <ion-label [ngClass]="list.active === 1 ? 'strike-text' : ''">{{
+          list.name
+        }}</ion-label>
+        <ion-icon
+          (click)="getTodoImage()"
+          aria-hidden="true"
+          name="image-outline"
+          slot="end"
+        ></ion-icon>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="deleteItem(list)"
+          >Delete</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
     }
   </ion-list>
 </ion-content>
