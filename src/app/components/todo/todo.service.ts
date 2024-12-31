@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { ShoppingListData } from '../../../models/shopping.model';
+import { TodoList } from '../../../models/todo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class TodoService {
     return this.http.get(`${environment.baseUrl}/api/todo`);
   }
 
-  markAsCompleted(id: number, list: any) {
+  markAsCompleted(id: number, list: TodoList) {
     return this.http.put(`${environment.baseUrl}/api/todo/${id}`, list);
   }
 

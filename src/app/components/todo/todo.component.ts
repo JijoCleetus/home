@@ -23,6 +23,7 @@ import { addIcons } from 'ionicons';
 import { imageOutline } from 'ionicons/icons';
 import { TodoService } from './todo.service';
 import { CommonModule } from '@angular/common';
+import { TodoList } from '../../../models/todo.model';
 
 @Component({
   selector: 'home-todo',
@@ -52,7 +53,8 @@ import { CommonModule } from '@angular/common';
 })
 export class TodoComponent implements OnInit {
   private todoService: TodoService = inject(TodoService);
-  todoList: any;
+  todoList: TodoList[] = [];
+
   constructor() {
     addIcons({ imageOutline });
   }
@@ -67,18 +69,16 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  markComplete(event: CheckboxCustomEvent, list: any): void {
+  markComplete(event: CheckboxCustomEvent, list: TodoList): void {
     list.active = event.detail.checked ? 1 : 0;
-    this.todoService.markAsCompleted(list.id!, list).subscribe((res) => {
-      console.log(res);
-    });
+    this.todoService.markAsCompleted(list.id!, list).subscribe((res) => {});
   }
 
-  getTodoImage() {
+  getTodoImage(): void {
     console.log('clicked image');
   }
 
-  deleteItem(item: any) {
+  deleteItem(item: TodoList): void {
     this.todoService
       .removeItemFromTodoList(item.id as number)
       .subscribe(async (res: any) => {
