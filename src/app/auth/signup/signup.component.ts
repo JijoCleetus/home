@@ -55,19 +55,17 @@ export class SignupComponent implements OnInit {
       ]),
       password: new FormControl(this.signUpData.password, [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(3),
       ]),
       confirmPassword: new FormControl(this.signUpData.password, [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(3),
       ]),
     });
   }
 
   signUp(data: SignUpData) {
-    // this.user.changeData(data);
     if (this.singUpForm.invalid) {
-      console.log('error', this.singUpForm);
       for (const control of Object.keys(this.singUpForm.controls)) {
         this.singUpForm.controls[control].markAsTouched();
       }
@@ -75,13 +73,14 @@ export class SignupComponent implements OnInit {
       this.toggleWarning(true);
       return;
     }
-    console.log('no error');
     this.signUpData = this.singUpForm.value;
     this.authService.signUp(this.signUpData).subscribe((res) => {
       if (res.success) {
+        this.warningMessage = 'Signup success. Please login';
         this.toggleWarning(true);
-        this.warningMessage = 'Signup success';
-        this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 400);
       }
     });
   }

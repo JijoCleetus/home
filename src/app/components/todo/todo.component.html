@@ -12,7 +12,7 @@
       <ion-icon name="add"> </ion-icon>
     </ion-fab-button>
   </ion-fab>
-
+  @if (todoList && todoList.length >0) {
   <ion-list [inset]="true">
     @for (list of todoList; track list.id){
     <ion-item-sliding>
@@ -41,4 +41,9 @@
     </ion-item-sliding>
     }
   </ion-list>
+  } @else{
+  <div color="tertiary" class="no-item">
+    <h5>Nothing to list</h5>
+  </div>
+  }
 </ion-content>

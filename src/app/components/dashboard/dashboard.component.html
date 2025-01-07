@@ -12,16 +12,19 @@
   </ion-nav-link>
 </div>
 <div class="dashboard-blocks-container">
-  <button class="dashboards-blocks" [routerLink]="['/subjects', 'maths']">
+  <!-- <button class="dashboards-blocks" [routerLink]="['/subjects', 'maths']"> -->
+  <button class="dashboards-blocks" (click)="toggleWarning(true)">
     <img src="../assets/icons/reminder.svg" class="dashboard-icons" />
   </button>
-  <button class="dashboards-blocks" [routerLink]="['/subjects', 'computers']">
+  <!-- <button class="dashboards-blocks" [routerLink]="['/subjects', 'computers']"> -->
+  <button class="dashboards-blocks" (click)="toggleWarning(true)">
     <img src="../assets/icons/password.svg" class="dashboard-icons" />
   </button>
 </div>
 <div class="dashboard-blocks-container">
   <ion-nav-link router-direction="forward" [component]="shoppingComponent">
-    <button class="dashboards-blocks" [routerLink]="['/profile']">
+    <!-- <button class="dashboards-blocks" [routerLink]="['/profile']"> -->
+    <button class="dashboards-blocks" (click)="toggleWarning(true)">
       <img src="../assets/icons/profile.svg" class="dashboard-icons" />
     </button>
   </ion-nav-link>
@@ -35,4 +38,10 @@
       <img src="../assets/icons/settings.svg" class="dashboard-icons" />
     </button>
   </ion-nav-link> -->
+  <ion-toast
+    [isOpen]="showWarning"
+    [message]="warningMessage"
+    [duration]="3000"
+    (didDismiss)="toggleWarning(false)"
+  ></ion-toast>
 </div>
