@@ -1,13 +1,13 @@
 <home-logo></home-logo>
 <div class="signup-blocks-container">
-  <form (submit)="signUp(signUpData)">
+  <form [formGroup]="singUpForm" (submit)="signUp(signUpData)">
     <div class="form-group">
       <input
         type="text"
         name="name"
         class="form-control"
         placeholder="Name"
-        [(ngModel)]="signUpData.name"
+        formControlName="name"
       />
     </div>
     <div class="form-group">
@@ -16,7 +16,7 @@
         name="email"
         class="form-control"
         placeholder="Email"
-        [(ngModel)]="signUpData.email"
+        formControlName="email"
       />
     </div>
     <div class="form-group">
@@ -25,7 +25,7 @@
         name="password"
         class="form-control"
         placeholder="Password"
-        [(ngModel)]="signUpData.password"
+        formControlName="password"
       />
     </div>
     <div class="form-group">
@@ -34,14 +34,20 @@
         name="c_password"
         class="form-control"
         placeholder="Confirm Password"
-        [(ngModel)]="signUpData.confirmPassword"
+        formControlName="confirmPassword"
       />
     </div>
     <div class="text-center">
       <input type="submit" class="btn btn-my" value="Sign Up" />
     </div>
     <div class="text-center login">
-      Already have an account ? <a routerLink="/login">Login</a> here.
+      Already have an account ? <a routerLink="/login">Login</a>
     </div>
   </form>
+  <ion-toast
+    [isOpen]="showWarning"
+    [message]="warningMessage"
+    [duration]="3000"
+    (didDismiss)="toggleWarning(false)"
+  ></ion-toast>
 </div>

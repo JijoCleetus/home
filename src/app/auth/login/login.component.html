@@ -27,7 +27,7 @@
         <a routerLink="/forget-password">Forget Password ?</a>
       </div>
       <div class="forget-pass">
-        Don`t have an account ? <a routerLink="/sign-up">Sign Up</a> here.
+        Don`t have an account ? <a routerLink="/sign-up">Sign Up</a>
       </div>
     </div>
 
@@ -38,11 +38,10 @@
       </h1>
     </div>
   </form>
-  <ion-content>
-    <ion-toast
-      trigger="open-toast"
-      message="This toast will disappear after 5 seconds"
-      [duration]="5000"
-    ></ion-toast>
-  </ion-content>
+  <ion-toast
+    [isOpen]="showWarning"
+    [message]="warningMessage"
+    [duration]="3000"
+    (didDismiss)="toggleWarning(false)"
+  ></ion-toast>
 </div>

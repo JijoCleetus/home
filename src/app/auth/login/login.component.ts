@@ -25,6 +25,9 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  showWarning: boolean = false;
+  warningMessage: string = '';
+
   userData: UserData = {
     email: '',
     password: '',
@@ -37,10 +40,19 @@ export class LoginComponent {
   }
 
   login(data: UserData) {
-    this.authService.login(data.email, data.password).subscribe((res) => {
-      if (res.success) {
-        this.router.navigate(['/dashboard']);
-      }
-    });
+    if (this.userData.email && this.userData.password) {
+      this.authService.login(data.email, data.password).subscribe((res) => {
+        if (res.success) {
+          this.router.navigate(['/dashboard']);
+        }
+      });
+    } else {
+      this.warningMessage = 'Please fill the missing fields';
+      this.toggleWarning(true);
+    }
+  }
+
+  toggleWarning(show: boolean) {
+    this.showWarning = show;
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { UserData } from '../../models/user.model';
+import { SignUpData, UserData } from '../../models/user.model';
 import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 
@@ -37,6 +37,19 @@ export class AuthService {
             localStorage.setItem('currentUser', JSON.stringify(res.user));
             this.currentUserSubject.next(res.user);
           }
+          return res;
+        })
+      );
+  }
+
+  signUp(signUpData: SignUpData) {
+    return this.http
+      .post<any>(`${environment.baseUrl}/api/signup`, signUpData)
+      .pipe(
+        map((res) => {
+          // if (res) {
+          //   this.router.navigate(['/login']);
+          // }
           return res;
         })
       );
