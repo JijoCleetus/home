@@ -44,6 +44,9 @@ export class LoginComponent {
       this.authService.login(data.email, data.password).subscribe((res) => {
         if (res.success) {
           this.router.navigate(['/dashboard']);
+        } else {
+          this.warningMessage = res.message || 'Please check the credentials';
+          this.toggleWarning(true);
         }
       });
     } else {
