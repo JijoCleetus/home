@@ -85,9 +85,6 @@ export class TodoComponent implements OnInit {
         if (res.success) {
           this.getAllTodoLists();
         }
-        //  else if (res.status === 201) {
-        //   this.showWarning(res?.message, shopping.id);
-        // }
       });
   }
 }
